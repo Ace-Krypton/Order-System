@@ -4,8 +4,23 @@ public class Main {
     //Static Scanner() method. I used static because other methods can see my Scanner();
     public static Scanner input = new Scanner(System.in);
     public static String again;
+    public static String readString;
     public static double choose,quantity = 1;
     public static double total = 0,pay;
+
+    //This is for clearing screen with key press
+    public static void clearScreenWithPress() {
+        readString = input.nextLine();
+
+        if (readString.isEmpty()) {
+            System.out.print("\033\143");
+        }
+    }
+
+    //This is clearing screen without pressing key
+    public static void clearScreen() {
+        System.out.print("\033\143");
+    }
 
     //This is menu method, it is clear by its name that, this method shows the menu of Coffee Bar
     public static void menu() {
@@ -16,7 +31,10 @@ public class Main {
         System.out.println("\t\t\t\t            3. Cappuccino         $3.25");
         System.out.println("\t\t\t\t            4. Latte              $3.50");
         System.out.println("\t\t\t\t            0. CANCEL                  ");
-        System.out.println("\t\t\t\t+----------------------------------------------------+");
+        System.out.println("\t\t\t\t+----------------------------------------------------+\n");
+        System.out.println("Press <Enter> for clearing screen");
+
+        clearScreenWithPress();
     }
 
     //Order method
@@ -28,26 +46,29 @@ public class Main {
                             Press '4' for Latte
                             Press '0' for CANCEL""");
 
+        System.out.print("\n\n-> ");
+
         choose = input.nextDouble();
 
         //Conditions
         switch ((int) choose) {
             case 1 -> {
                 //Buying process
-                System.out.println("You chose Espresso");
-                System.out.print("How many Espresso you want to buy? :");
+                clearScreen();
+                System.out.println("+++ You chose Espresso +++");
+                System.out.print("How many Espresso you want to buy? -> ");
                 quantity = input.nextDouble();
                 total += (quantity * 2.5);
                 
                 //If user wants to buy again :
                 System.out.println("Do you want to buy again?");
-                System.out.println("Press 'Y' for 'Yes' and 'N' for 'No' :");
+                System.out.print("Press 'Y' for 'Yes' and 'N' for 'No' -> ");
                 again = input.next();
                 
                 //Condition
-                if (again.equalsIgnoreCase("Y")) {
+                if (again.equalsIgnoreCase("Y"))
                     order(); //This is recursive method, it means this method calls itself
-                }
+                System.out.println("Total price is: " + total);
             }
 
         }
@@ -57,5 +78,9 @@ public class Main {
     public static void main(String[] args) {
         //Calling the menu
         menu();
+        //Calling the order
+        order();
+
+
     }
 }
