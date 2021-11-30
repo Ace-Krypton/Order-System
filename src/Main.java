@@ -68,9 +68,48 @@ public class Main {
                 //Condition
                 if (again.equalsIgnoreCase("Y"))
                     order(); //This is recursive method, it means this method calls itself
-                System.out.println("Total price is: " + total);
+                else {
+                    System.out.print("Enter the payment ->");
+                    pay = input.nextDouble();
+                    if(pay < total) {
+                        System.out.println("Not enough payment");
+                        clearScreen();
+                    }
+                    else {
+                        total -= pay;
+                        System.out.println("Total price is: " + total);
+                    }
+                }
             }
+            case 2 -> {
+                //Buying process
+                clearScreen();
+                System.out.println("+++ You chose Americano +++");
+                System.out.print("How many Americano you want to buy? -> ");
+                quantity = input.nextDouble();
+                total += (quantity * 2.75);
 
+                //If user wants to buy again :
+                System.out.println("Do you want to buy again?");
+                System.out.print("Press 'Y' for 'Yes' and 'N' for 'No' -> ");
+                again = input.next();
+
+                //Condition
+                if (again.equalsIgnoreCase("Y"))
+                    order(); //This is recursive method, it means this method calls itself
+                else {
+                    System.out.print("Enter the payment ->");
+                    pay = input.nextDouble();
+                    if(pay < total) {
+                        System.out.println("Not enough payment");
+                        clearScreen();
+                    }
+                    else {
+                        total -= pay;
+                        System.out.println("Total price is: " + total);
+                    }
+                }
+            }
         }
     }
 
