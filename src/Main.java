@@ -76,11 +76,13 @@ public class Main {
                         clearScreen();
                     }
                     else {
-                        total -= pay;
                         System.out.println("Total price is: " + total);
+                        total -= pay;
+                        System.out.println("The change is: " + total);
                     }
                 }
             }
+
             case 2 -> {
                 //Buying process
                 clearScreen();
@@ -88,6 +90,37 @@ public class Main {
                 System.out.print("How many Americano you want to buy? -> ");
                 quantity = input.nextDouble();
                 total += (quantity * 2.75);
+
+                //If user wants to buy again :
+                System.out.println("Do you want to buy again?");
+                System.out.print("Press 'Y' for 'Yes' and 'N' for 'No' -> ");
+                again = input.next();
+
+                    //Condition
+                    if (again.equalsIgnoreCase("Y"))
+                        order(); //This is recursive method, it means this method calls itself
+                    else {
+                        System.out.print("Enter the payment ->");
+                        pay = input.nextDouble();
+                        if(pay < total) {
+                            System.out.println("Not enough payment");
+                            clearScreen();
+                        }
+                        else {
+                            System.out.println("Total price is: " + total);
+                            total -= pay;
+                            System.out.println("The change is: " + total);
+                    }
+                }
+            }
+
+            case 3 -> {
+                //Buying process
+                clearScreen();
+                System.out.println("+++ You chose Cappuccino +++");
+                System.out.print("How many Cappuccino you want to buy? -> ");
+                quantity = input.nextDouble();
+                total += (quantity * 3.25);
 
                 //If user wants to buy again :
                 System.out.println("Do you want to buy again?");
@@ -105,10 +138,49 @@ public class Main {
                         clearScreen();
                     }
                     else {
-                        total -= pay;
                         System.out.println("Total price is: " + total);
+                        total -= pay;
+                        System.out.println("The change is: " + total);
                     }
                 }
+            }
+
+            case 4 -> {
+                //Buying process
+                clearScreen();
+                System.out.println("+++ You chose Latte +++");
+                System.out.print("How many Latte you want to buy? -> ");
+                quantity = input.nextDouble();
+                total += (quantity * 3.5);
+
+                //If user wants to buy again :
+                System.out.println("Do you want to buy again?");
+                System.out.print("Press 'Y' for 'Yes' and 'N' for 'No' -> ");
+                again = input.next();
+
+                //Condition
+                if (again.equalsIgnoreCase("Y"))
+                    order(); //This is recursive method, it means this method calls itself
+                else {
+                    System.out.print("Enter the payment ->");
+                    pay = input.nextDouble();
+                    if(pay < total) {
+                        System.out.println("Not enough payment");
+                        clearScreen();
+                    }
+                    else {
+                        System.out.println("Total price is: " + total);
+                        total -= pay;
+                        System.out.println("The change is: " + total);
+                    }
+                }
+            }
+
+            case 0 -> System.exit(0); //closing program
+
+            default -> {
+                System.out.println("Please choose 0 to 4 only");
+                order();
             }
         }
     }
